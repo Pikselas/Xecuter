@@ -9,7 +9,7 @@ int main()
     auto func = [&]()
     {
         std::lock_guard<std::mutex> lock(mtx);
-        std::cout << "Hello World! from " << std::this_thread::get_id() << std::endl;
+        std::cout << "Hello World!" << std::endl;
 
     };
     

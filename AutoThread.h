@@ -32,6 +32,7 @@ AutoThread::AutoThread(std::condition_variable& notifier , std::chrono::millisec
     {
         std::mutex mtx;
         std::unique_lock<std::mutex> m_lock(mtx);
+        shared_data->thread_id = std::this_thread::get_id();
         while(shared_data->notifier.wait_for(m_lock , timeout , [&](){  return shared_data->signal_run; }))
         {
             shared_data->signal_run = false;

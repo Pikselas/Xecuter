@@ -33,7 +33,6 @@ void Xecutor::execute(std::function<void()> func)
             // only the last thread in the pool can expire
             std::lock_guard<std::mutex> lock(mtx);
             threads.pop_back();
-            std::cout << "Thread " << std::this_thread::get_id() << " is expired" << std::endl;
         });
     }
 
