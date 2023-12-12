@@ -12,14 +12,14 @@ class Xecutor
     private:
         std::chrono::milliseconds timeout;
     public:
-        void execute(std::function<void()> func);
+        void execute(std::function<void()>&& func);
     public:
         Xecutor(std::chrono::milliseconds timeout = std::chrono::milliseconds(1000));
 };
 
 Xecutor::Xecutor(std::chrono::milliseconds timeout) : timeout(timeout)  {}
 
-void Xecutor::execute(std::function<void()> func)
+void Xecutor::execute(std::function<void()>&& func)
 {
     std::lock_guard<std::mutex> lock_(mtx);
     
